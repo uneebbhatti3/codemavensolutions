@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://www.codemavensolutions.com
-
-# Sitemaps
-Sitemap: https://www.codemavensolutions.com/sitemap.xml
