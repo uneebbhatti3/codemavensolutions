@@ -1,0 +1,41 @@
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-debug.log
+.next
+out
+coverage
+.env
+.env.*
+.DS_Store
+*.local
+*.log
+*.sqlite
+*.pem
+*.sublime*
+*.swp
+docker-compose.yml
+docker-compose.*.yml
+
+# Ignore OS generated files
+Thumbs.db
+ehthumbs.db
+.idea
+.vscode
+*.tmproj
+
+# Ignore test output
+jest-test-results.json
+
+# Ignore Prisma specific files/directories
+prisma/dev.db
+prisma/migrations/
+
+# Ignore build artifacts
+dist
+build
+
+# Ignore miscellaneous
+*.tgz
+*.tsbuildinfo
