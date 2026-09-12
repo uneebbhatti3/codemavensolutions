@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CALL_BOOKED
+  PROPOSAL_SENT
+  WON
+  LOST
+}
+
+enum ProjectType {
+  WEBSITE
+  MOBILE_APP
+  SAAS
+  AI_AUTOMATION
+  UI_UX_DESIGN
+  SEO
+  DIGITAL_MARKETING
+  SOCIAL_MEDIA
+  NOT_SURE
+}
+
+enum ProjectStage {
+  IDEA
+  DEFINING_REQUIREMENTS
+  EXISTING_PRODUCT_IMPROVEMENT
+  EXISTING_SYSTEM_REPLACEMENT
+  DESIGNED_NEEDS_DEVELOPMENT
+  LIVE_NEEDS_GROWTH
+  OTHER
+}
+
+enum ExistingAsset {
+  WEBSITE
+  APPLICATION
+  FIGMA_DESIGNS
+  BRAND_IDENTITY
+  BACKEND_API
+  DATABASE
+  CONTENT
+  ANALYTICS
+  NOTHING
+}
+
+enum BudgetRange {
+  UNDER_1000
+  FROM_1000_TO_3000
+  FROM_3000_TO_7500
+  FROM_7500_TO_15000
+  ABOVE_15000
+  NOT_SURE
+}
+
+enum ProjectTimeline {
+  ASAP
+  WITHIN_ONE_MONTH
+  ONE_TO_THREE_MONTHS
+  THREE_TO_SIX_MONTHS
+  NO_FIXED_DEADLINE
+}
+
+model Lead {
+  id String @id @default(cuid())
+
+  // Contact
+  name    String
+  email   String
+  company String?
+  website String?
+
+  // Project
+  projectTypes ProjectType[]
+  projectStage ProjectStage?
+
+  problem        String
+  desiredOutcome String?
+
+  existingAssets ExistingAsset[]
+
+  // Constraints
+  budget   BudgetRange?
+  timeline ProjectTimeline?
+
+  // Outcomes
+  successCriteria String?
+  additionalNotes String?
+
+  // Internal CRM state
+  status LeadStatus @default(NEW)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}

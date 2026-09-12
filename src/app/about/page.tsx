@@ -1,278 +1,429 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import Button from "@/components/common/Button";
+
+import {
+  ArrowUpRightIcon,
+  BotIcon,
+  Code2Icon,
+  MegaphoneIcon,
+  PaletteIcon,
+} from "lucide-react";
+
+import {
+  HeroSequence,
+  Reveal,
+  RevealLeft,
+  RevealRight,
+  Stagger,
+  StaggerItem,
+} from "@/components/animations/motion";
+
+import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
+import { Testimonials } from "@/components/common/testimonials";
+import { testimonials } from "@/data/testimonials";
+import { container, eyebrow, primaryButton } from "@/data/data";
+import ClosingInvitation from "@/components/common/closing-invitation";
+
+const title = "About Codemaven Solutions | Development, Design & Growth";
+
+const description =
+  "Learn how Codemaven Solutions approaches software development, UI/UX design, AI automation, SEO, and digital marketing with a business-first focus.";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: title,
+  },
+
+  description,
+
+  alternates: {
+    canonical: "/about",
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Codemaven Solutions",
+    url: "/about",
+    title,
+    description,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "About Codemaven Solutions",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/og-image.png"],
+  },
+};
+
+const principles = [
+  {
+    number: "01",
+    title: "Understand before proposing.",
+    description:
+      "We first understand what is happening today, what needs to improve, and what constraints the project has before deciding what should be built.",
+  },
+  {
+    number: "02",
+    title: "Keep the scope connected to the goal.",
+    description:
+      "Features, pages, campaigns, and automations earn their place by contributing to the outcome, not because they belong on a standard checklist.",
+  },
+  {
+    number: "03",
+    title: "Make decisions visible.",
+    description:
+      "We explain the reasoning behind important technical, design, and marketing decisions so you understand what is being done and why.",
+  },
+  {
+    number: "04",
+    title: "Build for what happens after launch.",
+    description:
+      "Delivery is not the finish line. We consider how the product will be maintained, how customers will find it, and what the business may need next.",
+  },
+];
+
+const disciplines = [
+  {
+    icon: Code2Icon,
+    title: "Development",
+    items: ["Websites", "Mobile Apps", "SaaS Products"],
+  },
+  {
+    icon: PaletteIcon,
+    title: "Design",
+    items: ["UI/UX Design", "Product Interfaces", "Digital Creative"],
+  },
+  {
+    icon: BotIcon,
+    title: "Automation",
+    items: ["AI Agents", "Workflow Automation", "Business Integrations"],
+  },
+  {
+    icon: MegaphoneIcon,
+    title: "Growth",
+    items: ["SEO", "Social Media", "Digital Marketing"],
+  },
+];
+
+const standards = [
+  {
+    title: "Practical over impressive.",
+    description:
+      "We prefer a solution that works reliably for the business over one that is technically impressive but unnecessarily complex.",
+  },
+  {
+    title: "Progress you can see.",
+    description:
+      "Projects are broken into defined stages with opportunities to review the work while decisions can still be made, not only after delivery.",
+  },
+  {
+    title: "Honest recommendations.",
+    description:
+      "If something does not need to be rebuilt, automated, redesigned, or added, we would rather say that than increase the scope without a reason.",
+  },
+];
 
 export default function AboutPage() {
-  const projectImages = [
-    {
-      src: "/assets/old/project1.png",
-      alt: "ALM Traders Website",
-      tags: [
-        "ALMTraders",
-        "Web Design",
-        "Web Development",
-        "NextJS",
-        "ReactJS",
-      ],
-      link: "https://www.almtraders.org/",
-      title: "ALM Traders",
-    },
-    {
-      src: "/assets/sysvelop.png",
-      alt: "Sysvelop Website",
-      tags: [
-        "Sysvelop",
-        "Web Development",
-        "MERN Stack",
-        "NextJS",
-        "TailwindCSS",
-      ],
-      link: "https://www.sysvelop.com/",
-      title: "Sysvelop",
-    },
-  ];
   return (
     <>
-      <section className="py-[72px] md:py-24 px-5 md:px-[60px]">
-        <div className="max-w-[1450px] mx-auto">
-          <div>
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight">
-              We are a team of passionate engineers, designers, and innovators
-              turning ideas into high-performing digital products — built to
-              inspire, engage, and scale.
-            </h2>
+      {/* Hero */}
+      <section
+        aria-labelledby="about-hero-heading"
+        className="relative isolate overflow-hidden border-b border-border"
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
+        >
+          <AnimatedGridPattern
+            maxOpacity={0.045}
+            className="absolute inset-0 h-full w-full opacity-40 mask-[radial-gradient(ellipse_at_70%_30%,black,transparent_75%)] motion-reduce:hidden"
+          />
+
+          <div className="absolute right-0 top-0 size-96 rounded-full bg-primary/5 blur-3xl" />
+        </div>
+
+        <div className={`${container} pb-14 pt-20 sm:pt-28 lg:pt-36`}>
+          <div className="grid gap-14 lg:grid-cols-[1.45fr_0.55fr] lg:items-end lg:gap-16">
+            <div>
+              <HeroSequence delay={0.05}>
+                <p className={eyebrow}>About Codemaven Solutions</p>
+              </HeroSequence>
+
+              <h1
+                id="about-hero-heading"
+                className="mt-7 max-w-5xl text-4xl font-medium leading-[1.06] tracking-[-0.045em] sm:text-6xl lg:text-7xl"
+              >
+                Good digital work starts with understanding
+                <span className="text-primary"> what needs to change.</span>
+              </h1>
+
+              <HeroSequence delay={0.12}>
+                <p className="mt-8 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+                  Codemaven Solutions is a digital product and growth company
+                  helping businesses turn ideas, operational problems, and
+                  growth plans into work people can actually use.
+                </p>
+              </HeroSequence>
+            </div>
+
+            <HeroSequence delay={0.2}>
+              <div className="border-l-2 border-primary/40 py-2 pl-6">
+                <p className={eyebrow}>How we work</p>
+
+                <p className="mt-5 text-xl font-medium leading-relaxed tracking-tight">
+                  Development, design, automation, and growth stay connected
+                  when the problem calls for more than one discipline.
+                </p>
+              </div>
+            </HeroSequence>
           </div>
         </div>
       </section>
 
-      <section className="bg-[url('/assets/about-img.png')] bg-contain bg-center bg-no-repeat aspect-[16/9] rounded-md max-w-[1450px] mx-auto px-5 md:px-[60px] my-24"></section>
+      {/* Why Codemaven exists */}
+      <section aria-labelledby="why-heading" className="py-20 sm:py-28">
+        <div
+          className={`${container} grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20`}
+        >
+          <RevealLeft>
+            <div>
+              <p className={eyebrow}>01 / Why Codemaven exists</p>
 
-      <section className="py-[72px] md:py-24 px-5 md:px-[60px] bg-lightGray-500">
-        <div className="max-w-[1450px] mx-auto">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-12">
-            <h3 className="font-heading w-full md:w-1/2 text-2xl sm:text-3xl lg:text-4xl leading-snug md:leading-tight font-semibold">
-              We don&apos;t just build another software.
-            </h3>
-            <p className="w-full md:w-1/2 leading-relaxed">
-              Every line of code we write, every interface we design, and every
-              solution we deliver is driven by one purpose — to make technology
-              feel human. We believe software should be functional and
-              emotional; it should perform seamlessly while inspiring confidence
-              in those who use it.
-            </p>
-          </div>
+              <h2
+                id="why-heading"
+                className="mt-5 max-w-xl text-3xl font-medium leading-tight tracking-tight sm:text-5xl"
+              >
+                The technology is only useful when it solves the right problem.
+              </h2>
+            </div>
+          </RevealLeft>
+
+          <RevealRight>
+            <div className="space-y-6 text-base leading-8 text-muted-foreground">
+              <p>
+                A website can look polished and still leave customers unsure
+                what to do next. An application can have dozens of features and
+                still make the underlying workflow harder. An automation can
+                save time in one place while creating problems somewhere else.
+              </p>
+
+              <p>
+                That is why our work does not begin with a framework, a design
+                trend, or a predefined package.
+              </p>
+
+              <p>
+                It begins with understanding the business, the people using the
+                solution, and the outcome the work is expected to create.
+              </p>
+            </div>
+          </RevealRight>
         </div>
       </section>
 
-      <section className="py-[72px] md:py-24 px-5 md:px-[60px]">
-        <div className="flex flex-col items-center justify-between gap-[72px] max-w-[1450px] mx-auto">
-          <div>
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-center">
-              The Codemaven Ethos
-            </h2>
-          </div>
+      {/* Principles */}
+      <section
+        aria-labelledby="principles-heading"
+        className="border-y border-border bg-muted/25 py-20 sm:py-28"
+      >
+        <div className={container}>
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <RevealLeft>
+              <div>
+                <p className={eyebrow}>02 / How we think</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div className="flex flex-col justify-between gap-[145px] bg-lightGray-500 p-[22px] rounded-md">
-              <div>
-                <h4 className="text-xl sm:text-2xl lg:text-3xl">
-                  Craftsmanship
-                </h4>
-              </div>
-              <div>
-                <p>
-                  We believe true excellence lies in the details. Every pixel,
-                  every line of code, and every user interaction is crafted with
-                  precision and purpose. Our work is never rushed — it&apos;s
-                  refined, tested, and perfected to ensure every product we
-                  deliver performs beautifully and feels effortless.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-between gap-[145px] bg-lightGray-500 p-[22px] rounded-md">
-              <div>
-                <h4 className="text-xl sm:text-2xl lg:text-3xl">Innovation</h4>
-              </div>
-              <div>
-                <p>
-                  Technology evolves at lightning speed — and so do we. We
-                  embrace change, explore new ideas, and experiment with
-                  emerging technologies to create solutions that don&apos;t just
-                  meet today&apos;s needs but anticipate tomorrow&apos;s
-                  possibilities. Innovation isn&apos;t an act for us — it&apos;s
-                  our default state.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-between gap-[145px] bg-lightGray-500 p-[22px] rounded-md">
-              <div>
-                <h4 className="text-xl sm:text-2xl lg:text-3xl">
-                  Transparency
-                </h4>
-              </div>
-              <div>
-                <p>
-                  Great partnerships are built on trust, and trust comes from
-                  clarity. We communicate openly, set realistic expectations,
-                  and collaborate closely with our clients at every step. No
-                  jargon, no confusion — just honest dialogue and shared
-                  progress.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-[72px] md:py-24 px-5 md:px-[60px] bg-lightGray-500">
-        <div className="flex flex-col items-center justify-between gap-[72px] max-w-[1450px] mx-auto">
-          <div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading font-semibold text-center">
-              Built by makers, driven by impact.
-            </h2>
-          </div>
-          <div>
-            <p className="text-center">
-              We&apos;re not just a team — we&apos;re a collective of thinkers,
-              designers, and engineers who believe great software is born from
-              collaboration, curiosity, and care. Our goal is to create
-              technology that empowers brands, engages users, and scales
-              effortlessly.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-[72px] md:py-24 px-5 md:px-[60px]">
-        <div className="flex flex-col items-center justify-between gap-[72px] max-w-[1450px] mx-auto">
-          <div>
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-center">
-              How We Bring Ideas to Life
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div className="flex flex-col justify-between gap-[145px] bg-lightGray-500 p-[22px] rounded-md">
-              <div>
-                <h4 className="text-xl sm:text-2xl lg:text-3xl">
-                  Discover & Define
-                </h4>
-              </div>
-              <div>
-                <p>
-                  Every successful product starts with understanding — your
-                  goals, your users, and your challenges. We dive deep into your
-                  business objectives, research your audience, and define a
-                  clear strategy that sets the foundation for meaningful,
-                  results-driven design and development.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-between gap-[145px] bg-lightGray-500 p-[22px] rounded-md">
-              <div>
-                <h4 className="text-xl sm:text-2xl lg:text-3xl">
-                  Design & Build
-                </h4>
-              </div>
-              <div>
-                <p>
-                  We translate insights into beautiful, functional digital
-                  experiences. From intuitive UI/UX design to clean, scalable
-                  code — every element is built with intention. We merge
-                  creativity with engineering excellence to craft solutions that
-                  not only look stunning but perform flawlessly across devices.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-between gap-[145px] bg-lightGray-500 p-[22px] rounded-md">
-              <div>
-                <h4 className="text-xl sm:text-2xl lg:text-3xl">
-                  Launch & Grow
-                </h4>
-              </div>
-              <div>
-                <p>
-                  Our job doesn&apos;t end at deployment — it evolves. We
-                  analyze performance, gather feedback, and continuously refine
-                  your product to ensure it scales with your business. From
-                  feature expansion to optimization, we help your product stay
-                  relevant, reliable, and ready for what&apos;s next.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-[72px] md:py-24 px-5 md:px-[60px]">
-        <div className="max-w-[1450px] mx-auto flex flex-col gap-[72px]">
-          <div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-heading text-center font-semibold">
-              Our Best Work
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px]">
-            {projectImages.map((project, index) => (
-              <div key={index}>
-                <Link
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`View project: ${project.alt}`}
-                  className="relative w-full h-[400px] rounded-[12px] overflow-hidden group block"
+                <h2
+                  id="principles-heading"
+                  className="mt-5 max-w-xl text-3xl font-medium leading-tight tracking-tight sm:text-5xl"
                 >
-                  {/* Optimized Image */}
-                  <Image
-                    src={project.src}
-                    alt={project.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                    quality={75}
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx0cHBwcHx0cHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/2wBDARUXFxwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                  We work backwards from the outcome.
+                </h2>
+              </div>
+            </RevealLeft>
+
+            <RevealRight>
+              <p className="max-w-lg text-base leading-8 text-muted-foreground">
+                The work becomes clearer when every decision can be traced back
+                to the reason the project exists in the first place.
+              </p>
+            </RevealRight>
+          </div>
+
+          <Stagger className="mt-14 grid gap-x-12 gap-y-12 md:grid-cols-2">
+            {principles.map((item) => (
+              <StaggerItem key={item.number}>
+                <article className="border-t border-border pt-6">
+                  <span className="font-mono text-sm text-primary">
+                    {item.number}
+                  </span>
+
+                  <h3 className="mt-5 text-2xl font-medium tracking-tight">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-3 max-w-lg text-sm leading-7 text-muted-foreground">
+                    {item.description}
+                  </p>
+                </article>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Connected disciplines */}
+      <section aria-labelledby="disciplines-heading" className="py-20 sm:py-28">
+        <div className={container}>
+          <Reveal>
+            <p className={eyebrow}>03 / Connected disciplines</p>
+          </Reveal>
+
+          <div className="mt-5 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+            <RevealLeft>
+              <h2
+                id="disciplines-heading"
+                className="max-w-3xl text-3xl font-medium leading-tight tracking-tight sm:text-5xl"
+              >
+                Some problems do not fit neatly into one service.
+              </h2>
+            </RevealLeft>
+
+            <RevealRight>
+              <p className="text-base leading-8 text-muted-foreground">
+                A marketing campaign performs better when the destination
+                communicates clearly. A SaaS product depends on both the system
+                behind it and the interface people use. An AI workflow only
+                creates value when it fits the way the business actually
+                operates.
+              </p>
+            </RevealRight>
+          </div>
+
+          <Stagger className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {disciplines.map((item) => (
+              <StaggerItem key={item.title}>
+                <article className="h-full border-t border-border pt-6 transition-transform duration-300 ease-out md:hover:-translate-y-1">
+                  <item.icon
+                    aria-hidden="true"
+                    className="size-6 text-primary"
+                    strokeWidth={1.5}
                   />
 
-                  {/* Tag Overlay */}
-                  <div className="absolute bottom-4 left-4 bg-black-500/60 backdrop-blur-md p-[10px] rounded-lg flex flex-wrap gap-2">
-                    {project.tags?.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="bg-lightGray-500 px-3 py-1 rounded-full text-sm border border-white text-black-500"
-                      >
-                        {tag}
-                      </span>
+                  <h3 className="mt-5 text-xl font-medium tracking-tight">
+                    {item.title}
+                  </h3>
+
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    {item.items.map((entry) => (
+                      <li key={entry}>{entry}</li>
                     ))}
-                  </div>
-                </Link>
-                <div className="mt-[5px]">
-                  <h6 className="text-h6 font-bold">{project.title}</h6>
-                </div>
-              </div>
+                  </ul>
+                </article>
+              </StaggerItem>
             ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Standards */}
+      <section
+        aria-labelledby="standards-heading"
+        className="border-y border-border bg-muted/25 py-20 sm:py-28"
+      >
+        <div className={container}>
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+            <RevealLeft>
+              <div>
+                <p className={eyebrow}>04 / What you can expect</p>
+
+                <h2
+                  id="standards-heading"
+                  className="mt-5 max-w-xl text-3xl font-medium leading-tight tracking-tight sm:text-5xl"
+                >
+                  Clear work. Clear communication. No unnecessary complexity.
+                </h2>
+              </div>
+            </RevealLeft>
+
+            <Stagger className="border-t border-border">
+              {standards.map((item) => (
+                <StaggerItem key={item.title}>
+                  <article className="border-b border-border py-7">
+                    <h3 className="text-xl font-medium tracking-tight">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </article>
+                </StaggerItem>
+              ))}
+            </Stagger>
           </div>
         </div>
       </section>
 
-      <section className="py-[72px] md:py-24 px-5 md:px-[60px]">
-        <div className="max-w-[1450px] mx-auto">
-          <div className="bg-gradient-to-br from-blue-500 to-[#A4B9FF] flex flex-col items-center justify-between py-[72px] px-5 rounded-md gap-[22px]">
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-white">
-              Let&apos;s Build Something Extraordinary
-            </h2>
-            <Button>
-              <Link href={"https://cal.com/codemavensolutions/30min"}>
-                Book a call
-              </Link>
-            </Button>
+      <Testimonials testimonials={testimonials} />
+
+      {/* Work bridge */}
+      <section
+        aria-labelledby="work-heading"
+        className="border-t border-border py-20 sm:py-28"
+      >
+        <div className={container}>
+          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-20">
+            <RevealLeft>
+              <div>
+                <p className={eyebrow}>05 / See the work itself</p>
+
+                <h2
+                  id="work-heading"
+                  className="mt-5 max-w-3xl text-3xl font-medium leading-tight tracking-tight sm:text-5xl"
+                >
+                  The work says more than an introduction can.
+                </h2>
+              </div>
+            </RevealLeft>
+
+            <RevealRight>
+              <div>
+                <p className="text-base leading-8 text-muted-foreground">
+                  Explore the businesses, products, and operational problems we
+                  have worked on, and how each project moved from requirement to
+                  working solution.
+                </p>
+
+                <Link href="/work" className={`${primaryButton} mt-7`}>
+                  Explore our work
+                  <ArrowUpRightIcon aria-hidden="true" className="size-4" />
+                </Link>
+              </div>
+            </RevealRight>
           </div>
         </div>
       </section>
+
+      {/* Closing CTA */}
+      <ClosingInvitation
+        title="Ready to talk about the work?"
+        heading="If the way we work makes sense to you, let's talk about the
+                    work itself."
+        content="Tell us where your business is today, what you are trying to
+                    change, and what you have already considered. We can take it
+                    from there."
+      />
     </>
   );
 }

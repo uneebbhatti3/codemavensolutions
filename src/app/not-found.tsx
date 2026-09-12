@@ -1,11 +1,10 @@
 "use client";
 
-import Button from "@/components/common/Button";
+import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 export default function NotFoundPage() {
-  const navigate = useRouter(); // remove if using Next.js
+  const navigate = useRouter();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-6">
